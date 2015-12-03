@@ -65,3 +65,9 @@ for(var myNumber = 0; myNumber < myNums.count; myNumber+=2)
 {
     print(myNumber)
 }
+
+myNums[0] = 98
+print(myNums)
+//Must append before you can use that slot.
+myNums[4] = 341
+print(myNums) //Must append first!
