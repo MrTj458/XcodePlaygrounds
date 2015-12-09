@@ -78,3 +78,96 @@ square.sideLength = 16
 square.sideLength
 square.area
 square.perimeter
+
+//Enumerations
+
+enum Rank: Int
+{
+    case Ace = 1
+    case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
+    case Jack, Queen, King
+    func simpleDescription() -> String
+    {
+        switch self
+        {
+        case .Ace:
+            return "ace"
+        case .Jack:
+            return "jack"
+        case .Queen:
+            return "queen"
+        case .King:
+            return "king"
+        default:
+            return String(self.rawValue)
+        }
+    }
+}
+
+let ace = Rank.Ace
+let aceRawValue = ace.rawValue
+
+if let convertedRank = Rank(rawValue: 3)
+{
+    let threeDescription = convertedRank.simpleDescription()
+}
+
+enum Suit
+{
+    case Spades, Hearts, Diamonds, Clubs
+    func simpleDescription() -> String
+    {
+        switch self
+        {
+        case .Spades:
+            return "spades"
+        case .Hearts:
+            return "hearts"
+        case .Diamonds:
+            return "diamonds"
+        case .Clubs:
+            return "clubs"
+        }
+    }
+}
+let hearts = Suit.Hearts
+let heartDescription = hearts.simpleDescription()
+
+
+//Generics
+
+func repeatItem<Item>(item: Item, numberOfTimes: Int) -> [Item]
+{
+    var result = [Item]()
+    for _ in 0..<numberOfTimes
+    {
+        result.append(item)
+    }
+    return result
+}
+
+repeatItem("Knock", 4)
+
+enum OptionalValue<Wrapped>
+{
+    case None
+    case Some(Wrapped)
+}
+var possibleInteger: OptionalValue<Int> = .None
+possibleInteger = .Some (100)
+
+func anyCommonElements <T: SequenceType, U: SequenceType where T.Generator.Element: Equatable, T.Generator.Element == U.Generator.Element> (lhs: T, _ rhs: U) -> Bool
+{
+    for lhsItem in lhs
+    {
+        for rhsItem in rhs
+        {
+            if lhsItem == rhsItem
+            {
+                return true
+            }
+        }
+    }
+    return false
+}
+anyCommonElements([1, 2, 3], [3])
