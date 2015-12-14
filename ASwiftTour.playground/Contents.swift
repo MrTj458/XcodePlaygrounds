@@ -146,7 +146,7 @@ func repeatItem<Item>(item: Item, numberOfTimes: Int) -> [Item]
     return result
 }
 
-repeatItem("Knock", 4)
+repeatItem("Knock", numberOfTimes: 4)
 
 enum OptionalValue<Wrapped>
 {
